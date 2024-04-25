@@ -6,7 +6,6 @@ using System.Collections;
 public class Slot : MonoBehaviour, IDropHandler
 {
     public int closestUI; // 公共变量，用于保存最近的 UI 值
-    public float scrollbarValue;
     public float delayTime; // 延迟时间
 
     public RectTransform ui1Transform; // UI1 的 RectTransform 组件
@@ -25,7 +24,20 @@ public class Slot : MonoBehaviour, IDropHandler
     public GameObject uiToActivate4; // 要激活的 UI4 游戏对象
     public List<GameObject> uiToDeactivate = new List<GameObject>(); // 要禁用的 UI 游戏对象列表
     public List<GameObject> uiToActivate = new List<GameObject>();
+    private ScrollbarManager scrollbarManager;
 
+    private void Start()
+    {
+        // 在开始时查找ScrollbarManager脚本所在的游戏对象
+        scrollbarManager = FindObjectOfType<ScrollbarManager>();
+
+        if (scrollbarManager == null)
+        {
+            Debug.LogError("Cannot find ScrollbarManager component.");
+        }
+        scrollbarManager.scrollbarValue = 0.2f;
+
+    }
     public void OnDrop(PointerEventData eventData)
     {
         RectTransform draggedUI = eventData.pointerDrag.GetComponent<RectTransform>();
@@ -79,19 +91,19 @@ public class Slot : MonoBehaviour, IDropHandler
         switch (closestUI)
         {
             case 1:
-                scrollbarValue += UI1;// 当 X 等于 1 时执行的操作
+                scrollbarManager.scrollbarValue += UI1;// 当 X 等于 1 时执行的操作
                 // TODO: 添加针对 X 等于 1 的逻辑
                 break;
             case 2:
-                scrollbarValue += UI2;// 当 X 等于 2 时执行的操作
+                scrollbarManager.scrollbarValue += UI2;// 当 X 等于 2 时执行的操作
                 // TODO: 添加针对 X 等于 2 的逻辑
                 break;
             case 3:
-                scrollbarValue += UI3;// 当 X 等于 3 时执行的操作
+                scrollbarManager.scrollbarValue += UI3;// 当 X 等于 3 时执行的操作
                 // TODO: 添加针对 X 等于 3 的逻辑
                 break;
             case 4:
-                scrollbarValue += UI4;// 当 X 不等于 1、2 或 3 时执行的操作
+                scrollbarManager.scrollbarValue += UI4;// 当 X 不等于 1、2 或 3 时执行的操作
                 // TODO: 添加对于其他情况的逻辑
                 break;
         }

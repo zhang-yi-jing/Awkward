@@ -3,9 +3,12 @@ using UnityEngine.UI;
 
 public class ScrollbarManager : MonoBehaviour
 {
+    public static ScrollbarManager Instance { get; private set; }
     public Scrollbar scrollbar;
     private Slot slotScript;
+    public float scrollbarValue;
 
+   
     private void Start()
     {
         // 获取 Slot 脚本的实例
@@ -24,7 +27,7 @@ public class ScrollbarManager : MonoBehaviour
         if (slotScript != null && scrollbar != null)
         {
             // 设置进度条的大小为 slotScript 中的 scrollbarValue 值
-            scrollbar.size = slotScript.scrollbarValue;
+            scrollbar.size = scrollbarValue;
 
         }
     }
