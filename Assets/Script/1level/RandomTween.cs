@@ -2,15 +2,15 @@ using UnityEngine;
 
 public class RandomTween : MonoBehaviour
 {
-    public RectTransform[] waypoints; // 存储多个目标 UI 的 RectTransform 组件
+    public Transform[] waypoints; // 存储多个目标 UI 的 Transform 组件
     public float speed = 1f; // 移动速度
 
     private int currentIndex = 0;
-    private RectTransform rectTransform;
+    private Transform transform;
 
     private void Start()
     {
-        rectTransform = GetComponent<RectTransform>();
+        transform = GetComponent<Transform>();
     }
 
     private void Update()
@@ -26,10 +26,10 @@ public class RandomTween : MonoBehaviour
             return;
         }
 
-        Vector2 targetPosition = waypoints[currentIndex].anchoredPosition;
-        rectTransform.anchoredPosition = Vector2.MoveTowards(rectTransform.anchoredPosition, targetPosition, speed * Time.deltaTime);
+        Vector3 targetPosition = waypoints[currentIndex].position;
+        transform.position = Vector3.MoveTowards(transform.position, targetPosition, speed * Time.deltaTime);
 
-        if (Vector2.Distance(rectTransform.anchoredPosition, targetPosition) < 0.01f)
+        if (Vector3.Distance(transform.position, targetPosition) < 0.01f)
         {
             currentIndex = (currentIndex + 1) % waypoints.Length;
         }

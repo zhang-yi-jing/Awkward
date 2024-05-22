@@ -828,4 +828,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f5063615cf244c947bb28464a2f286b8, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  sceneName: first level
+  sceneName: 1level

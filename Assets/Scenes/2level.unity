@@ -1391,7 +1391,9 @@ MonoBehaviour:
   - {fileID: 1189292810}
   - {fileID: 163335879}
   isFinished: 0
-  objectToActivate: {fileID: 1820522033}
+  objectsToActivate:
+  - {fileID: 1820522033}
+  objectsToDestroy: []
   tmpText: {fileID: 1817703635}
   secondTmpText: {fileID: 1655680036}
 --- !u!50 &1690310545

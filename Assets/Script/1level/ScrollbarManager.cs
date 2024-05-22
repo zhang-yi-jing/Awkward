@@ -5,14 +5,14 @@ public class ScrollbarManager : MonoBehaviour
 {
     public static ScrollbarManager Instance { get; private set; }
     public Scrollbar scrollbar;
-    private Slot slotScript;
+    private des slotScript;
     public float scrollbarValue;
 
    
     private void Start()
     {
         // 获取 Slot 脚本的实例
-        slotScript = FindObjectOfType<Slot>();
+        slotScript = FindObjectOfType<des>();
 
         // 检查是否找到了 Slot 脚本的实例
         if (slotScript == null)

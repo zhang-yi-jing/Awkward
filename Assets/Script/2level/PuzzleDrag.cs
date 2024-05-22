@@ -8,7 +8,8 @@ public class PuzzleDrag : MonoBehaviour
     private Vector2 startPos;
     [SerializeField] private Transform[] correctTransArray;
     [SerializeField] public bool isFinished; // 默认为false
-    public GameObject objectToActivate; // 要激活的物体
+    public GameObject[] objectsToActivate; // 要激活的物体
+    public GameObject[] objectsToDestroy;
     public TMP_Text tmpText;
     public TMP_Text secondTmpText;
     private Color startColor1;
@@ -68,9 +69,17 @@ public class PuzzleDrag : MonoBehaviour
 
         if (isCorrect)
         {
-            if (objectToActivate != null)
+            foreach (GameObject obj in objectsToActivate)
             {
-                objectToActivate.SetActive(true); // 激活物体
+                obj.SetActive(true); // 激活物体
+            }
+        }
+
+        if (isCorrect)
+        {
+            foreach (GameObject obj in objectsToDestroy)
+            {
+                Destroy(obj);
             }
         }
 
